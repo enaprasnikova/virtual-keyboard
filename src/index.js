@@ -58,7 +58,7 @@ const keyDownButton = (arr, el) => {
         altPress = true;
       } else if (el.key === 'ArrowUp' || el.key === 'ArrowLeft' || el.key === 'ArrowDown' || el.key === 'ArrowRight') {
         textarea.textContent += arrowSymbols[el.key];
-      } else if (el.key !== 'Delete' && el.key !== 'CapsLock') {
+      } else if (el.key !== 'Delete' && el.key !== 'CapsLock' && el.key !== 'Meta') {
         textarea.textContent += el.key;
       }
     }
@@ -84,7 +84,7 @@ function addMouseDown(arr) {
         e.preventDefault();
       } else if (e.target.id === 'Space') {
         textarea.textContent += ' ';
-      } else if (e.target.id !== 'ControlLeft' && e.target.id !== 'AltLeft' && e.target.id !== 'ControlRight' && e.target.id !== 'AltRight' && e.target.id !== 'CapsLock' && e.target.id !== 'Delete') {
+      } else if (e.target.id !== 'ControlLeft' && e.target.id !== 'AltLeft' && e.target.id !== 'ControlRight' && e.target.id !== 'AltRight' && e.target.id !== 'CapsLock' && e.target.id !== 'Delete' && e.target.id !== 'MetaLeft') {
         textarea.textContent += e.target.innerText;
       }
     });
@@ -120,7 +120,7 @@ document.addEventListener('keyup', (el) => {
         altPress = false;
       } else if (el.key === 'Control') {
         ctrlPress = false;
-      } else if (el.code === 'MetaLeft') {
+      } else if (el.code === 'Meta') {
         el.preventDefault();
       }
 
