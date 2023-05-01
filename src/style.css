@@ -1,0 +1,105 @@
+.body {
+  margin: 0;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.header {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.header__caption {
+  text-align: center;
+  color: #000000;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.main {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin: 0 auto;
+}
+
+.text {
+
+}
+
+.textarea {
+  width: 100%;
+  height: 250px;
+}
+
+.virtual-keyboard {
+  border: 3px solid #141517;
+  border-radius: 8px;
+  background-color: #737a75;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin: 8px;
+}
+
+.keyboard__line {
+  display: flex;
+  /*justify-content: space-between;*/
+  gap: 7px;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.keyboard__button  {
+  border-radius: 8px;
+  width: 44px;
+  height: 44px;
+  background-color: #37383b;
+  text-align: center;
+  line-height: 44px;
+  color: white;
+  cursor: pointer;
+}
+
+.keyboard__button_active {
+  background-color: #447e43;
+  border-radius: 20px;
+}
+
+.keyboard__button:hover {
+  background-color: #147e77;
+}
+
+.keyboard__button:active {
+  background-color: #447e43;
+  border-radius: 20px;
+}
+
+
+
+.keyboard__button_backspace {
+  width: 116px;
+}
+
+.keyboard__button_tab {
+  width: 65px;
+}
+
+.keyboard__button_caps {
+  width: 112px;
+}
+
+.keyboard__button_enter {
+  width: 99px;
+}
+
+.keyboard__button_space {
+  width: 371px;
+}
