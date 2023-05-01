@@ -82,8 +82,9 @@ export default function addHtml() {
     + '    </section>\n'
     + '  </main>\n'
     + '\n'
-    + '  <footer>\n'
-    + '\n'
+    + '  <footer class="footer">\n'
+    + '<h2 class="footer__info">Клавиатура созданна в операционной системе Windows</h2>\n'
+    + '<h2 class="footer__info-l">Для переключения языка комбинация: ctrl + alt</h2>\n'
     + '  </footer>'
     + '',
   );
