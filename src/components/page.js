@@ -1,32 +1,90 @@
-// const pageHtml = document.querySelector(".body");
-// const keyboardLine = document.querySelector('.keyboard__line');
-//
-// export function createEl() {
-//   pageHtml.insertAdjacentHTML("afterbegin",
-//     '<header class="header">\n' +
-//     '    <h1 class="header__caption">RSS Виртуальная клавиатура</h1>\n' +
-//     '  </header>\n' +
-//     '  <main class="main">\n' +
-//     '    <section class="text">\n' +
-//     '      <textarea class="textarea"></textarea>\n' +
-//     '    </section>\n' +
-//     '    <section class="virtual-keyboard">\n' +
-//     '      <div class="keyboard">\n' +
-//     '        <ul class="keyboard__line">\n' +
-//     '        </ul>\n' +
-//     '      </div>\n' +
-//     '    </section>\n' +
-//     '  </main>\n' +
-//     '\n' +
-//     '  <footer>\n' +
-//     '\n' +
-//     '  </footer>' +
-//     '');
-//
-// }
-//
-// export function createUlElement() {
-//   for (let i = 0; i <= 64; i++) {
-//     keyboardLine.insertAdjacentHTML('beforeend', '<li className="keyboard__button"></li>')
-//   }
-// }
+const pageHtml = document.querySelector('.body');
+
+export default function addHtml() {
+  pageHtml.insertAdjacentHTML(
+    'afterbegin',
+    '<header class="header">\n'
+    + '    <h1 class="header__caption">RSS Виртуальная клавиатура</h1>\n'
+    + '  </header>\n'
+    + '  <main class="main">\n'
+    + '    <section class="text">\n'
+    + '      <textarea class="textarea"></textarea>\n'
+    + '    </section>\n'
+    + '    <section class="virtual-keyboard">\n'
+    + '      <div class="keyboard">\n'
+    + '        <ul class="keyboard__line">\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_backspace not-uppercase"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_tab not-uppercase"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_caps not-uppercase"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_enter not-uppercase"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_caps not-uppercase"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button button-content-shift"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_enter not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button keyboard__button_space not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '          <li class="keyboard__button not-uppercase"></li>\n'
+    + '        </ul>\n'
+    + '      </div>\n'
+    + '    </section>\n'
+    + '  </main>\n'
+    + '\n'
+    + '  <footer>\n'
+    + '\n'
+    + '  </footer>'
+    + '',
+  );
+}

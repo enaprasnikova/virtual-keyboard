@@ -66,6 +66,7 @@
   line-height: 44px;
   color: white;
   cursor: pointer;
+  transition: background-color 0.4s, border-radius 0.4s;
 }
 
 .keyboard__button_active {

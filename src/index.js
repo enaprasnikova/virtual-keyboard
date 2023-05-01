@@ -1,114 +1,23 @@
 import './style.css';
-import {button, additionalButtons, additionalButtonsRu} from "./utils/button";
+import { button, arrowSymbols } from './utils/button';
+import { toUpperCaseButton, toLowerCaseButton } from './utils/util';
+import addHtml from './components/page';
+import { addButtonContentShift, capsLockEvent, changeLanguage } from './components/events';
 
-
-const pageHtml = document.querySelector(".body");
-
-pageHtml.insertAdjacentHTML("afterbegin",
-  '<header class="header">\n' +
-  '    <h1 class="header__caption">RSS Виртуальная клавиатура</h1>\n' +
-  '  </header>\n' +
-  '  <main class="main">\n' +
-  '    <section class="text">\n' +
-  '      <textarea class="textarea"></textarea>\n' +
-  '    </section>\n' +
-  '    <section class="virtual-keyboard">\n' +
-  '      <div class="keyboard">\n' +
-  '        <ul class="keyboard__line">\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_backspace not-uppercase"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_tab not-uppercase"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_caps not-uppercase"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_enter not-uppercase"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_caps not-uppercase"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button button-content-shift"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_enter not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button keyboard__button_space not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '          <li class="keyboard__button not-uppercase"></li>\n' +
-  '        </ul>\n' +
-  '      </div>\n' +
-  '    </section>\n' +
-  '  </main>\n' +
-  '\n' +
-  '  <footer>\n' +
-  '\n' +
-  '  </footer>' +
-  '');
+addHtml();
 
 const keyboardButton = document.querySelectorAll('.keyboard__button');
 const textarea = document.querySelector('.textarea');
 
+let ctrlPress = false;
+let altPress = false;
+
 function addButtonContent(arrButton, arrContent, buttonId) {
   arrButton.forEach((el, index) => {
-    el.textContent = arrContent[index];
-    el.setAttribute('id', buttonId[index])
-  })
-}
-
-function addButtonContentShift(arrButton) {
-  arrButton.forEach((btn) => {
-    if (btn.classList.contains('button-content-shift')) {
-      if (localStorage.getItem('locale') === 'eng') {
-        btn.textContent = !additionalButtons[btn.id] ? btn.textContent : additionalButtons[btn.id]
-      } else {
-        btn.textContent = !additionalButtonsRu[btn.id] ? btn.textContent : additionalButtonsRu[btn.id]
-      }
-    }
-  })
+    const res = el;
+    res.textContent = arrContent[index];
+    res.setAttribute('id', buttonId[index]);
+  });
 }
 
 const init = () => {
@@ -120,22 +29,16 @@ const init = () => {
   } else {
     addButtonContent(keyboardButton, button.keyEn, button.keyCode);
   }
-}
+};
 init();
 
-
-let ctrlPress = false;
-let altPress = false;
-
-document.addEventListener('keydown', (el) => keyDownButton(keyboardButton, el))
 const keyDownButton = (arr, el) => {
-
   arr.forEach((btn) => {
     if (btn.id === el.code) {
       btn.classList.add('keyboard__button_active');
 
       if (el.code === 'Tab') {
-        el.preventDefault()
+        el.preventDefault();
         textarea.textContent += '\t';
       } else if (el.code === 'Backspace') {
         textarea.textContent = textarea.textContent.slice(0, -1);
@@ -144,43 +47,25 @@ const keyDownButton = (arr, el) => {
       } else if (el.code === 'ShiftLeft' || el.code === 'ShiftRight') {
         toUpperCaseButton(keyboardButton);
         addButtonContentShift(keyboardButton);
-      } else if (el.key === 'Control' && altPress) {
-
+      } else if ((el.key === 'Control' && altPress) || (el.key === 'Alt' && ctrlPress)) {
         el.preventDefault();
-        if (localStorage.getItem('locale') === 'ru') {
-          addButtonContent(keyboardButton, button.keyEn, button.keyCode);
-          localStorage.setItem('locale', 'eng');
-        } else {
-          addButtonContent(keyboardButton, button.Key, button.keyCode);
-          localStorage.setItem('locale', 'ru');
-        }
-      } else if (el.key === 'Alt' && ctrlPress) {
-
-        el.preventDefault();
-        if (localStorage.getItem('locale') === 'ru') {
-          addButtonContent(keyboardButton, button.keyEn, button.keyCode);
-          localStorage.setItem('locale', 'eng');
-        } else {
-
-          addButtonContent(keyboardButton, button.Key, button.keyCode);
-          localStorage.setItem('locale', 'ru');
-        }
+        changeLanguage(keyboardButton, addButtonContent);
       } else if (el.key === 'Control') {
         el.preventDefault();
         ctrlPress = true;
       } else if (el.key === 'Alt') {
         el.preventDefault();
         altPress = true;
-      } else if (el.key === 'Delete') {
-
-      } else {
+      } else if (el.key === 'ArrowUp' || el.key === 'ArrowLeft' || el.key === 'ArrowDown' || el.key === 'ArrowRight') {
+        textarea.textContent += arrowSymbols[el.key];
+      } else if (el.key !== 'Delete' && el.key !== 'CapsLock') {
         textarea.textContent += el.key;
       }
     }
+  });
+};
 
-  })
-
-}
+document.addEventListener('keydown', (el) => keyDownButton(keyboardButton, el));
 
 function addMouseDown(arr) {
   arr.forEach((el) => {
@@ -191,24 +76,19 @@ function addMouseDown(arr) {
       } else if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftRight') {
         toUpperCaseButton(keyboardButton);
         addButtonContentShift(keyboardButton);
-      } else if (e.target.id === 'Delete') {
-
       } else if (e.target.id === 'Tab') {
         textarea.textContent += '\t';
       } else if (e.target.id === 'Enter') {
         textarea.textContent += '\n';
-
-      } else if (e.target.id === 'ControlLeft' || e.target.id === 'AltLeft' || e.target.id === 'ControlRight' || e.target.id === 'AltRight') {
-
       } else if (e.target.id === 'MetaLeft') {
-        e.preventDefault()
+        e.preventDefault();
       } else if (e.target.id === 'Space') {
         textarea.textContent += ' ';
-      } else {
+      } else if (e.target.id !== 'ControlLeft' && e.target.id !== 'AltLeft' && e.target.id !== 'ControlRight' && e.target.id !== 'AltRight' && e.target.id !== 'CapsLock' && e.target.id !== 'Delete') {
         textarea.textContent += e.target.innerText;
       }
-    })
-  })
+    });
+  });
 }
 
 function addMouseUp(arr) {
@@ -216,64 +96,35 @@ function addMouseUp(arr) {
     el.addEventListener('mouseup', (e) => {
       el.classList.remove('keyboard__button_active');
       if (e.target.id === 'CapsLock') {
-
-        toUpperCaseButton(keyboardButton);
-
+        capsLockEvent(keyboardButton);
       } else if (e.target.id === 'ShiftLeft' || e.target.id === 'ShiftRight') {
         toLowerCaseButton(keyboardButton);
         init();
       }
-
-    })
-  })
+    });
+  });
 }
-
 addMouseUp(keyboardButton);
 addMouseDown(keyboardButton);
 
-
 document.addEventListener('keyup', (el) => {
-  for (let i = 0; i < keyboardButton.length; i++) {
+  for (let i = 0; i < keyboardButton.length; i += 1) {
     if (keyboardButton[i].id === el.code) {
       keyboardButton[i].classList.remove('keyboard__button_active');
-      if (el.code === 'Delete') {
-
-      } else if (el.code === 'CapsLock') {
-        if (el.getModifierState(el.key) === true) {
-          toUpperCaseButton(keyboardButton)
-        } else {
-          toLowerCaseButton(keyboardButton)
-        }
-
+      if (el.code === 'CapsLock') {
+        capsLockEvent(keyboardButton);
       } else if (el.code === 'ShiftLeft' || el.code === 'ShiftRight') {
         toLowerCaseButton(keyboardButton);
         init();
-
       } else if (el.key === 'Alt') {
         altPress = false;
       } else if (el.key === 'Control') {
         ctrlPress = false;
       } else if (el.code === 'MetaLeft') {
-        el.preventDefault()
+        el.preventDefault();
       }
-      // else {
-      //   textarea.textContent += el.key;
-      // }
+
       break;
     }
   }
-})
-
-function toUpperCaseButton(arr) {
-  arr.forEach((el) => {
-    if (!el.classList.contains('not-uppercase')) {
-      el.textContent = el.textContent.toUpperCase();
-    }
-  })
-}
-
-function toLowerCaseButton(arr) {
-  arr.forEach((el) => {
-    el.textContent = el.textContent.toLowerCase();
-  })
-}
+});
