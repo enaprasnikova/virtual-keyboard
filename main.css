@@ -66,6 +66,7 @@
   line-height: 44px;
   color: white;
   cursor: pointer;
+  transition: background-color 0.5s ease-out, border-radius 0.5s ease-out;
 }
 
 .keyboard__button_active {
@@ -103,3 +104,4 @@
 .keyboard__button_space {
   width: 371px;
 }
+
