@@ -57,7 +57,7 @@
   padding: 0;
 }
 
-.keyboard__button  {
+.keyboard__button {
   border-radius: 8px;
   width: 44px;
   height: 44px;
@@ -83,8 +83,6 @@
   border-radius: 20px;
 }
 
-
-
 .keyboard__button_backspace {
   width: 116px;
 }
@@ -103,5 +101,23 @@
 
 .keyboard__button_space {
   width: 371px;
+}
+
+.footer {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.footer__info {
+  font-size: 12px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.footer__info-l {
+  font-size: 12px;
+  margin: 0;
+  text-align: center;
 }
 
